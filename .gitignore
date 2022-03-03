@@ -1,0 +1,5 @@
+/.build/
+/cover_db/
+/Dist-Zilla-PluginBundle-Author-AJNN-*
+/Stuff/
+*.webloc
