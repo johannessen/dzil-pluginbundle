@@ -50,7 +50,10 @@ sub configure {
 	my @prune_aliases = ( $^O eq 'darwin' ? [ $AJNN . '::PruneAliases' => 'PruneAliases' ] : () );
 	$self->add_plugins(
 		[ 'GatherDir' => {
-			exclude_filename => ['README.md'],
+			exclude_filename => [qw(
+				README.md
+				cpanfile
+			)],
 			exclude_match => [qw(
 				~
 				\.webloc$
@@ -177,6 +180,7 @@ This plugin bundle is nearly equivalent to the following C<dist.ini> config:
 
  [GatherDir]
  exclude_filename = README.md
+ exclude_filename = cpanfile
  exclude_match = ~|\.webloc$
  prune_directory = ^cover_db$|^Stuff$|\.bbprojectd$
  [PruneCruft]
