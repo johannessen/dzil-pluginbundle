@@ -10,6 +10,7 @@ use Moose;
 use namespace::autoclean;
 use Pod::Elemental::Element::Nested;
 use Pod::Elemental::Element::Pod5::Ordinary;
+use Software::License 0.103014;  # for spdx_expression
 
 with 'Pod::Weaver::Role::Section';
 

@@ -22,6 +22,7 @@ requires "Pod::Text" => "0";
 requires "Pod::Weaver" => "4.009";
 requires "Pod::Weaver::Config::Assembler" => "0";
 requires "Pod::Weaver::Role::Section" => "0";
+requires "Software::License" => "0.103014";
 requires "namespace::autoclean" => "0";
 requires "perl" => "5.026";
 
