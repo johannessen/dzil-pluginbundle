@@ -46,6 +46,7 @@ sub configure {
 			exclude_filename => [qw(
 				README.md
 				cpanfile
+				dist.ini
 			)],
 			exclude_match => [qw(
 				~
@@ -172,6 +173,7 @@ This plugin bundle is nearly equivalent to the following C<dist.ini> config:
  [GatherDir]
  exclude_filename = README.md
  exclude_filename = cpanfile
+ exclude_filename = dist.ini
  exclude_match = ~|\.webloc$
  prune_directory = ^cover_db$|^Stuff$|\.bbprojectd$
  [PruneCruft]
