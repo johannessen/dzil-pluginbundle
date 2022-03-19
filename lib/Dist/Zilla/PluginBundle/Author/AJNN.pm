@@ -34,13 +34,6 @@ has podweaver_skip => (
 );
 push @mvp_multivalue_args, 'PodWeaver.skip';
 
-has readme => (
-	is => 'ro',
-	isa => 'Str',
-	lazy => 1,
-	default => sub { $_[0]->payload->{'readme'} || '' },
-);
-
 
 sub configure {
 	my ($self) = @_;
@@ -98,12 +91,10 @@ sub configure {
 		}],
 	);
 	
-	my @readme = ( $AJNN . '::Readme' => 'Readme' );
-	@readme = ( $self->readme ) if $self->readme;
 	$self->add_plugins(
 		[ 'MakeMaker' ],
 		#[ 'StaticInstall' => { mode => 'on' } ],
-		[ @readme ],
+		[ $AJNN . '::Readme' => 'Readme' ],
 		[ 'Manifest' ],
 	);
 	
@@ -232,13 +223,6 @@ See L<Dist::Zilla::Plugin::FileFinder::Filter/"skip">.
 
  PodWeaver.skip = \.pod$
  PodWeaver.skip = Net/(?:SSL|TLS)
-
-=head2 readme
-
-The plugin name to be used to generate a readme. The default is to use
-L<Dist::Zilla::PluginBundle::Author::AJNN::Readme>.
-
- readme = Readme::Brief
 
 =head2 Test::MinimumVersion.max_target_perl
 
