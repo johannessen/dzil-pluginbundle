@@ -19,6 +19,14 @@ use Pod::Weaver::PluginBundle::Author::AJNN;
 my @mvp_multivalue_args;
 sub mvp_multivalue_args { @mvp_multivalue_args }
 
+has gatherdir_exclude_match => (
+	is => 'ro',
+	isa => 'ArrayRef[Str]',
+	lazy => 1,
+	default => sub { $_[0]->payload->{'GatherDir.exclude_match'} || [] },
+);
+push @mvp_multivalue_args, 'GatherDir.exclude_match';
+
 has max_target_perl => (
 	is => 'ro',
 	isa => 'Str',
@@ -40,6 +48,7 @@ sub configure {
 	
 	my $AJNN = '=' . __PACKAGE__;
 	
+	my @gatherdir_exclude_match = $self->gatherdir_exclude_match->@*;
 	my @prune_aliases = ( $^O eq 'darwin' ? [ $AJNN . '::PruneAliases' => 'PruneAliases' ] : () );
 	$self->add_plugins(
 		[ 'GatherDir' => {
@@ -48,7 +57,7 @@ sub configure {
 				cpanfile
 				dist.ini
 			)],
-			exclude_match => [qw(
+			exclude_match => [ @gatherdir_exclude_match, qw(
 				~
 				\.webloc$
 			)],
@@ -216,6 +225,15 @@ This plugin bundle is nearly equivalent to the following C<dist.ini> config:
  [RunExtraTests]
 
 =head1 ATTRIBUTES
+
+=head2 GatherDir.exclude_match
+
+Files or directories that match any of these regular expressions
+will not be included in the build. May be given multiple times.
+See L<Dist::Zilla::Plugin::GatherDir/"exclude_match">.
+
+ GatherDir.exclude_match = private_dir
+ GatherDir.exclude_match = \.data$
 
 =head2 PodWeaver.skip
 
