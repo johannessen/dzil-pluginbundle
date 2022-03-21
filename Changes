@@ -1,8 +1,9 @@
 Revision history for Dist-Zilla-PluginBundle-Author-AJNN
 
-0.0202  2022-03-19
+0.0203  2022-03-21
 
  - Remove readme attribute
+ - Add cpan_release attribute
  - Add GatherDir.exclude_match attribute
  - Exclude dist.ini from gathered files
 

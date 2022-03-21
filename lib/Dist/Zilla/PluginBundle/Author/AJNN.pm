@@ -19,6 +19,13 @@ use Pod::Weaver::PluginBundle::Author::AJNN;
 my @mvp_multivalue_args;
 sub mvp_multivalue_args { @mvp_multivalue_args }
 
+has cpan_release => (
+	is => 'ro',
+	isa => 'Str',
+	lazy => 1,
+	default => sub { $_[0]->payload->{'cpan_release'} // '1' },
+);
+
 has gatherdir_exclude_match => (
 	is => 'ro',
 	isa => 'ArrayRef[Str]',
@@ -93,8 +100,7 @@ sub configure {
 		[ 'CheckChangeLog' ],
 		[ 'TestRelease' ],
 		[ 'ConfirmRelease' ],
-		#[ 'FakeRelease' ],
-		[ 'UploadToCPAN' ],
+		[ $self->cpan_release ? 'UploadToCPAN' : 'FakeRelease' ],
 		[ 'Git::Tag' => {
 			tag_format => '%V',
 			tag_message => '%V%t  %{yyyy-MM-dd}d%n%c',
@@ -104,7 +110,9 @@ sub configure {
 	$self->add_plugins(
 		[ 'MakeMaker' ],
 		#[ 'StaticInstall' => { mode => 'on' } ],
-		[ $AJNN . '::Readme' => 'Readme' ],
+		[ $AJNN . '::Readme' => 'Readme', {
+			cpan_release => $self->cpan_release,
+		}],
 		[ 'Manifest' ],
 	);
 	
@@ -225,6 +233,14 @@ This plugin bundle is nearly equivalent to the following C<dist.ini> config:
  [RunExtraTests]
 
 =head1 ATTRIBUTES
+
+=head2 cpan_release
+
+Whether or not this distribution is meant to be released to
+L<https://www.cpan.org/ CPAN>. The default is yes, but for software
+of low quality or little interest to others, it can be set to no.
+
+ cpan_release = 0
 
 =head2 GatherDir.exclude_match
 
