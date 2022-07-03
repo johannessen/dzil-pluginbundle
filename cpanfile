@@ -8,6 +8,7 @@ requires "Dist::Zilla::Plugin::Git" => "2.046";
 requires "Dist::Zilla::Plugin::GithubMeta" => "0";
 requires "Dist::Zilla::Plugin::MetaProvides::Package" => "0";
 requires "Dist::Zilla::Plugin::PodWeaver" => "0";
+requires "Dist::Zilla::Plugin::PruneAliases" => "0";
 requires "Dist::Zilla::Plugin::RunExtraTests" => "0";
 requires "Dist::Zilla::Plugin::Test::MinimumVersion" => "0";
 requires "Dist::Zilla::Role::FileGatherer" => "0";

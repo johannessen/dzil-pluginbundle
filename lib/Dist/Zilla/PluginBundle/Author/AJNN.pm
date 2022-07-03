@@ -66,7 +66,6 @@ sub configure {
 	my $AJNN = '=' . __PACKAGE__;
 	
 	my @gatherdir_exclude_match = $self->gatherdir_exclude_match->@*;
-	my @prune_aliases = ( $^O eq 'darwin' ? [ $AJNN . '::PruneAliases' => 'PruneAliases' ] : () );
 	$self->add_plugins(
 		[ 'GatherDir' => {
 			exclude_filename => [qw(
@@ -85,7 +84,7 @@ sub configure {
 			)],
 		}],
 		[ 'PruneCruft' ],
-		@prune_aliases,
+		[ 'PruneAliases' ],
 	);
 	
 	$self->add_plugins(
@@ -216,7 +215,7 @@ This plugin bundle is nearly equivalent to the following C<dist.ini> config:
  exclude_match = ~|\.webloc$
  prune_directory = ^cover_db$|^Stuff$|\.bbprojectd$
  [PruneCruft]
- [@Author::AJNN::PruneAliases]
+ [PruneAliases]
  
  [CPANFile]
  [MetaJSON]
