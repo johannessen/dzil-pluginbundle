@@ -15,6 +15,8 @@ use Dist::Zilla::PluginBundle::Author::AJNN::PruneAliases;
 use Dist::Zilla::PluginBundle::Author::AJNN::Readme;
 use Pod::Weaver::PluginBundle::Author::AJNN;
 
+use List::Util 1.33 'any';
+
 
 my @mvp_multivalue_args;
 sub mvp_multivalue_args { @mvp_multivalue_args }
@@ -48,6 +50,14 @@ has podweaver_skip => (
 	default => sub { $_[0]->payload->{'PodWeaver.skip'} || [] },
 );
 push @mvp_multivalue_args, 'PodWeaver.skip';
+
+has filter_remove => (
+	is => 'ro',
+	isa => 'ArrayRef[Str]',
+	lazy => 1,
+	default => sub { $_[0]->payload->{'-remove'} || [] },
+);
+push @mvp_multivalue_args, '-remove';
 
 
 sub configure {
@@ -146,6 +156,18 @@ sub configure {
 }
 
 
+around add_plugins => sub {
+    my ($orig, $self, @plugins) = @_;
+	
+	my @remove = $self->filter_remove->@*;
+	$self->$orig( grep {
+		my $plugin = $_;
+		my $moniker = ref $_ ? $_->[1] // $_->[0] : $_;
+		(any { $_ eq $moniker } @remove) ? () : ($plugin)
+	} @plugins );
+};
+
+
 __PACKAGE__->meta->make_immutable;
 
 1;
@@ -173,8 +195,8 @@ in F<dist.ini>:
 
 skip some parts if required:
 
- [@Filter]
- -bundle = @Author::AJNN
+ [@Author::AJNN]
+ -remove = CheckChangeLog
  -remove = Git::Check
 
 =head1 DESCRIPTION
@@ -233,6 +255,15 @@ This plugin bundle is nearly equivalent to the following C<dist.ini> config:
  [RunExtraTests]
 
 =head1 ATTRIBUTES
+
+=head2 -remove
+
+Moniker of a plugin that is to be removed from this bundle. May
+be given multiple times. See L<Dist::Zilla::PluginBundle::Filter>.
+Offered here as a workaround for
+L<RT 81958|https://github.com/rjbs/Dist-Zilla/issues/695>.
+
+ -remove = Git::Check
 
 =head2 cpan_release
 

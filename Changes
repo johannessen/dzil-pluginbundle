@@ -1,5 +1,9 @@
 Revision history for Dist-Zilla-PluginBundle-Author-AJNN
 
+0.0204  2022-07-03
+
+ - Add -remove attribute (workaround for Dist::Zilla RT 81958)
+
 0.0203  2022-03-21
 
  - Remove readme attribute
