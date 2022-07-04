@@ -220,7 +220,7 @@ done by L<Pod::Weaver::PluginBundle::Author::AJNN::License>.
 
 =head2 cpan_release
 
-Whether the distribution is available on L<https://www.cpan.org/ CPAN>.
+Whether the distribution is available on L<CPAN|https://www.cpan.org/>.
 The default is yes. If set to no, the link in the readme will be changed
 to GitHub and CPAN will no longer be mentioned in the installation
 instructions.

@@ -266,7 +266,7 @@ L<RT 81958|https://github.com/rjbs/Dist-Zilla/issues/695>.
 =head2 cpan_release
 
 Whether or not this distribution is meant to be released to
-L<https://www.cpan.org/ CPAN>. The default is yes, but for software
+L<CPAN|https://www.cpan.org/>. The default is yes, but for software
 of low quality or little interest to others, it can be set to no.
 
  cpan_release = 0
@@ -310,7 +310,5 @@ L<Dist::Zilla::PluginBundle::Author::AJNN::Readme>
 L<Pod::Weaver::PluginBundle::Author::AJNN>
 
 L<Dist::Zilla::Role::PluginBundle::Easy>
-
-L<Dist::Zilla::PluginBundle::Filter>
 
 =cut
