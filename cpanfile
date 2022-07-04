@@ -12,7 +12,6 @@ requires "Dist::Zilla::Plugin::PruneAliases" => "0";
 requires "Dist::Zilla::Plugin::RunExtraTests" => "0";
 requires "Dist::Zilla::Plugin::Test::MinimumVersion" => "0";
 requires "Dist::Zilla::Role::FileGatherer" => "0";
-requires "Dist::Zilla::Role::FilePruner" => "0";
 requires "Dist::Zilla::Role::PluginBundle::Easy" => "0";
 requires "Encode" => "0";
 requires "Moose" => "0";

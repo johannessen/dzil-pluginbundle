@@ -11,7 +11,6 @@ use namespace::autoclean;
 
 with 'Dist::Zilla::Role::PluginBundle::Easy';
 
-use Dist::Zilla::PluginBundle::Author::AJNN::PruneAliases;
 use Dist::Zilla::PluginBundle::Author::AJNN::Readme;
 use Pod::Weaver::PluginBundle::Author::AJNN;
 
