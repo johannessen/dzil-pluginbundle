@@ -15,6 +15,7 @@ requires "Dist::Zilla::Role::FileGatherer" => "0";
 requires "Dist::Zilla::Role::PluginBundle::Easy" => "0";
 requires "Encode" => "0";
 requires "Moose" => "0";
+requires "Path::Tiny" => "0";
 requires "Pod::Elemental" => "0";
 requires "Pod::Elemental::Element::Nested" => "0";
 requires "Pod::Elemental::Element::Pod5::Ordinary" => "0";

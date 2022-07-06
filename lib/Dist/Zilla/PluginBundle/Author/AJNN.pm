@@ -15,6 +15,7 @@ use Dist::Zilla::PluginBundle::Author::AJNN::Readme;
 use Pod::Weaver::PluginBundle::Author::AJNN;
 
 use List::Util 1.33 'any';
+use Path::Tiny;
 
 
 my @mvp_multivalue_args;
@@ -59,6 +60,22 @@ has filter_remove => (
 push @mvp_multivalue_args, '-remove';
 
 
+sub _meta_no_index {
+	# Only include no_index in meta if t/lib actually exists in this dist
+	# (this may be slightly over-engineered)
+	my $path = Path::Tiny->cwd;
+	while (! $path->is_rootdir) {
+		if ($path->child('t')->child('lib')->exists) {
+			return ([ 'MetaNoIndex' => {
+				directory => 't/lib',
+			}]);
+		}
+		$path = $path->parent;
+	}
+	return ();
+}
+
+
 sub configure {
 	my ($self) = @_;
 	
@@ -90,6 +107,7 @@ sub configure {
 		[ 'CPANFile' ],
 		[ 'MetaJSON' ],
 		[ 'MetaYAML' ],
+		_meta_no_index(),
 		[ 'MetaProvides::Package' ],
 		[ 'PkgVersion' => {
 			die_on_existing_version => 1,
@@ -219,6 +237,8 @@ This plugin bundle is nearly equivalent to the following C<dist.ini> config:
  [CPANFile]
  [MetaJSON]
  [MetaYAML]
+ [MetaNoIndex]
+ directory = t/lib
  [MetaProvides::Package]
  [PkgVersion]
  die_on_existing_version = 1
