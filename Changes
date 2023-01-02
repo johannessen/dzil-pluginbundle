@@ -1,7 +1,8 @@
 Revision history for Dist-Zilla-PluginBundle-Author-AJNN
 
-0.0302  2022-07-06
+0.04  2023-01-01
 
+ - Fix broken logic for -remove attribute
  - Add MetaNoIndex plugin if t/lib is present
  - Remove Dist::Zilla::PluginBundle::Author::AJNN::PruneAliases
 

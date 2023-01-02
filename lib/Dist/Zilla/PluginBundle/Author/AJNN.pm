@@ -14,7 +14,7 @@ with 'Dist::Zilla::Role::PluginBundle::Easy';
 use Dist::Zilla::PluginBundle::Author::AJNN::Readme;
 use Pod::Weaver::PluginBundle::Author::AJNN;
 
-use List::Util 1.33 'any';
+use List::Util 1.33 'none';
 use Path::Tiny;
 
 
@@ -177,9 +177,9 @@ around add_plugins => sub {
 	
 	my @remove = $self->filter_remove->@*;
 	$self->$orig( grep {
-		my $plugin = $_;
-		my $moniker = ref $_ ? $_->[1] // $_->[0] : $_;
-		(any { $_ eq $moniker } @remove) ? () : ($plugin)
+		my $moniker = $_;
+		$moniker = $_->[1] && ! ref $_->[1] ? $_->[1] : $_->[0] if ref;
+		none { $_ eq $moniker } @remove
 	} @plugins );
 };
 
@@ -281,6 +281,7 @@ be given multiple times. See L<Dist::Zilla::PluginBundle::Filter>.
 Offered here as a workaround for
 L<RT 81958|https://github.com/rjbs/Dist-Zilla/issues/695>.
 
+ -remove = CheckChangeLog
  -remove = Git::Check
 
 =head2 cpan_release
