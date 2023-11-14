@@ -25,9 +25,9 @@ sub mvp_bundle_config {
 		[ '@AJNN/Name',           _exp('Name'), {} ],
 		[ '@AJNN/Version',        _exp('Version'), {} ],
 		
+		[ 'OVERVIEW',             _exp('Generic'), {} ],
 		[ 'SYNOPSIS',             _exp('Generic'), {} ],
 		[ 'DESCRIPTION',          _exp('Generic'), {} ],
-		[ 'OVERVIEW',             _exp('Generic'), {} ],
 		
 		[ '@AJNN/Leftovers',      _exp('Leftovers'), {} ],
 		
@@ -67,18 +67,18 @@ or in F<dist.ini>:
 This is the configuration I use for L<Dist::Zilla::Plugin::PodWeaver>.
 Most likely you don't want or need to read this.
 
-=head1 OVERVIEW
+=head1 EQUIVALENT INI CONFIG
 
 This plugin bundle is nearly equivalent to the following C<weaver.ini> config:
 
  [@CorePrep]
- [-SingleEnconding]
+ [-SingleEncoding]
  [Name]
  [Version]
  
+ [Generic / OVERVIEW]
  [Generic / SYNOPSIS]
  [Generic / DESCRIPTION]
- [Generic / OVERVIEW]
  
  [Leftovers]
  

@@ -221,7 +221,7 @@ This is the configuration I use for L<Dist::Zilla>.
 
 (Most likely you don't want or need to read this.)
 
-=head1 OVERVIEW
+=head1 EQUIVALENT INI CONFIG
 
 This plugin bundle is nearly equivalent to the following C<dist.ini> config:
 
