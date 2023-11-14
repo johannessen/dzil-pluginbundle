@@ -61,7 +61,7 @@ sub _readme_header {
 	$description =~ s/\n\n.*$//;  # only keep the first paragraph
 	
 	my $link = $self->zilla->distmeta->{resources}{repository}{web};
-	$link = "https://metacpan.org/release/$dist_name" if $self->cpan_release;
+	$link = "https://metacpan.org/dist/$dist_name" if $self->cpan_release;
 	
 	return <<END;
 $main_module $dist_version$trial_rel
