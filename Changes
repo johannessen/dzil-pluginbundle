@@ -1,5 +1,9 @@
 Revision history for Dist-Zilla-PluginBundle-Author-AJNN
 
+0.0601  2023-11-21
+
+ - Add readme support for main modules with separate .pod files
+
 0.06  2023-11-14
 
  - Put OVERVIEW before SYNOPSIS in pod

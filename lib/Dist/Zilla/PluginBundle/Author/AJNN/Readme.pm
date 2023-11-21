@@ -8,6 +8,7 @@ package Dist::Zilla::PluginBundle::Author::AJNN::Readme;
 use Dist::Zilla;
 use Dist::Zilla::File::FromCode;
 use Encode;
+use List::Util qw(first);
 use Moose;
 use namespace::autoclean;
 use Pod::Elemental;
@@ -143,11 +144,16 @@ sub _main_module_name {
 	return $name;
 }
 
-	
+
 sub _main_module_description {
 	my ($self) = @_;
 	
-	my $pod = $self->zilla->main_module->content;
+	my $pod_file = first {
+		$_->name eq $self->zilla->main_module->name =~ s/\.pm$/.pod/r;
+	} $self->zilla->files->@*;
+	$pod_file //= $self->zilla->main_module;
+	
+	my $pod = $pod_file->content;
 	$pod = Encode::encode( 'UTF-8', $pod, Encode::FB_CROAK );
 	my $document = Pod::Elemental->read_string( $pod );
 	my $desc_found;
