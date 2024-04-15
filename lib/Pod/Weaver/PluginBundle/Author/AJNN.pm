@@ -25,10 +25,6 @@ sub mvp_bundle_config {
 		[ '@AJNN/Name',           _exp('Name'), {} ],
 		[ '@AJNN/Version',        _exp('Version'), {} ],
 		
-		[ 'OVERVIEW',             _exp('Generic'), {} ],
-		[ 'SYNOPSIS',             _exp('Generic'), {} ],
-		[ 'DESCRIPTION',          _exp('Generic'), {} ],
-		
 		[ '@AJNN/Leftovers',      _exp('Leftovers'), {} ],
 		
 		[ '@AJNN/Author',  __PACKAGE__ . '::Author', {} ],
@@ -75,10 +71,6 @@ This plugin bundle is nearly equivalent to the following C<weaver.ini> config:
  [-SingleEncoding]
  [Name]
  [Version]
- 
- [Generic / OVERVIEW]
- [Generic / SYNOPSIS]
- [Generic / DESCRIPTION]
  
  [Leftovers]
  
