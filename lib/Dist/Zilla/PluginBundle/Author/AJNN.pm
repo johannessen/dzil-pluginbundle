@@ -287,8 +287,9 @@ L<RT 81958|https://github.com/rjbs/Dist-Zilla/issues/695>.
 =head2 cpan_release
 
 Whether or not this distribution is meant to be released to
-L<CPAN|https://www.cpan.org/>. The default is yes, but for software
-of low quality or little interest to others, it can be set to no.
+L<CPAN|https://www.cpan.org/>. The default is yes, but for cases
+where a public CPAN release is not desirable or possible, it can
+be set to no.
 
  cpan_release = 0
 
