@@ -151,6 +151,7 @@ sub configure {
 		@podweaver_skip = ( finder => '@Author::AJNN/PodWeaverFiles' );
 	}
 	$self->add_plugins(
+		[ 'Git::Contributors' => { remove => 'arne.johannessen.de' } ],
 		#[ 'PodWeaverIfPod' => {
 		[ 'PodWeaver' => {
 			config_plugin => '@Author::AJNN',
@@ -264,6 +265,7 @@ This plugin bundle is nearly equivalent to the following C<dist.ini> config:
  [FileFinder::Filter / PodWeaverFiles]
  finder = :InstallModules
  finder = :ExecFiles
+ [Git::Contributors]
  [PodWeaver]
  finder = PodWeaverFiles
  config_plugin = @Author::AJNN

@@ -28,6 +28,8 @@ sub mvp_bundle_config {
 		[ '@AJNN/Leftovers',      _exp('Leftovers'), {} ],
 		
 		[ '@AJNN/Author',  __PACKAGE__ . '::Author', {} ],
+		[ '@AJNN/Contributors', _exp('Contributors'), {} ],
+		
 		[ '@AJNN/License', __PACKAGE__ . '::License', {} ],
 	);
 }
@@ -75,6 +77,8 @@ This plugin bundle is nearly equivalent to the following C<weaver.ini> config:
  [Leftovers]
  
  [@Author::AJNN::Author]
+ [Contributors]
+ 
  [@Author::AJNN::License]
 
 =head1 BUGS
