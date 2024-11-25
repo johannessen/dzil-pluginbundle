@@ -130,6 +130,7 @@ sub configure {
 		[ 'Git::Tag' => {
 			tag_format => '%V',
 			tag_message => '%V%t  %{yyyy-MM-dd}d%n%c',
+			time_zone => 'UTC',
 		}],
 	);
 	
@@ -257,6 +258,7 @@ This plugin bundle is nearly equivalent to the following C<dist.ini> config:
  [Git::Tag]
  tag_format = '%V'
  tag_message = '%V%t  %{yyyy-MM-dd}d%n%c'
+ time_zone = UTC
  
  [MakeMaker]
  [@Author::AJNN::Readme]
