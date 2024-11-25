@@ -16,6 +16,7 @@ use Pod::Weaver::PluginBundle::Author::AJNN;
 
 use List::Util 1.33 'none';
 use Path::Tiny;
+use version 0.77;
 
 
 my @mvp_multivalue_args;
@@ -103,6 +104,8 @@ sub configure {
 		[ 'PruneAliases' ],
 	);
 	
+	my %use_package = eval { version->parse($self->max_target_perl) ge v5.12 }
+		? ( use_package => 1 ) : ();
 	$self->add_plugins(
 		[ 'CPANFile' ],
 		[ 'MetaJSON' ],
@@ -112,6 +115,7 @@ sub configure {
 		[ 'PkgVersion' => {
 			die_on_existing_version => 1,
 			die_on_line_insertion => 1,
+			%use_package,
 		}],
 		[ 'GithubMeta' => {
 			issues => 1,
@@ -245,6 +249,7 @@ This plugin bundle is nearly equivalent to the following C<dist.ini> config:
  [PkgVersion]
  die_on_existing_version = 1
  die_on_line_insertion = 1
+ use_package = 1
  [GithubMeta]
  issues = 1
  homepage = ''
